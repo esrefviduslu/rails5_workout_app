@@ -77,6 +77,8 @@ guard :rspec, cmd: "bundle exec rspec" do
       rspec.spec.call("acceptance/#{m[1]}")
     ]
   end
+  
+  watch(rails.view_dirs) { |m| "spec/features/#{m[1]}" }
 
   # Rails config changes
   watch(rails.spec_helper)     { rspec.spec_dir }
