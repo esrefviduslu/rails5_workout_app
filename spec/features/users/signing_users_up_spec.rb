@@ -15,6 +15,11 @@ RSpec.feature "Signup users" do
     
     expect(page).to have_content("You have signed up successfully.")
     
+    user = User.last
+    room = user.room
+    room_name = user.full_name.split.join("-")
+    expect(room.name).to eq(room_name)
+    
     visit "/"
     
     expect(page).to have_content("John Doe")
@@ -33,5 +38,5 @@ RSpec.feature "Signup users" do
 
     expect(page).to have_content("First name can't be blank")
     expect(page).to have_content("Last name can't be blank")
-  end  
+  end
 end
